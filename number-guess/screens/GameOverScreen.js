@@ -1,13 +1,27 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Image, ScrollView, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import Title from "../components/ui/Title";
 import colors from "../constants/colors";
 import PrimaryButton from '../components/ui/PrimaryButton';
 
 export default function GameOverScreen({roundsNumber,userNUmber,onStartNewGame}) {
+  const {width,height} = useWindowDimensions();
+  let imageSize = 300;
+  if(width<380){
+    imageSize=150
+  }
+  if(height<400){
+    imageSize = 80
+  }
+  const imageStyle = {
+    width:imageSize,
+    height:imageSize,
+    borderRadius:imageSize/2
+  }
   return (
+    <ScrollView style={{flex:1}}>
     <View style={styles.rootContainer}>
       <Title>Game Over!</Title>
-      <View style={styles.imageContainerStyle}>
+      <View style={[styles.imageContainerStyle,imageStyle]}>
       <Image style={styles.image}source={require('../assets/images/success.png')}/>
       </View>
       <View>
@@ -15,8 +29,10 @@ export default function GameOverScreen({roundsNumber,userNUmber,onStartNewGame})
         <PrimaryButton onPress={onStartNewGame}>Start new Game</PrimaryButton>
       </View>
     </View>
+    </ScrollView>
   )
 }
+// const deviceWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   rootContainer:{
@@ -26,9 +42,6 @@ const styles = StyleSheet.create({
     alignItems:'center'
   },
   imageContainerStyle:{
-    width:300,
-    height:300,
-    borderRadius:150,
     borderColor:colors.primary800,
     overflow:"hidden",
     margin:36

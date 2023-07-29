@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { ImageBackground, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import StartGameScreen from './screens/StartGameScreen';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -39,6 +38,7 @@ export default function App() {
   if(isGameOver) screen=<GameOverScreen userNUmber={userNumber} roundsNumber={guessRounds} onStartNewGame={handleStartNewGame}/>
   
   return (
+
     <LinearGradient colors={[colors.primary700, colors.accent500]} style={styles.rootScreen}>
       <ImageBackground 
         source={require('./assets/images/background.png')}
