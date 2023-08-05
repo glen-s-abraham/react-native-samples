@@ -7,3 +7,5 @@ export default function MealItem({title}) {
     </View>
   )
 }
+
+
